@@ -1,0 +1,469 @@
+/* 在之前CSS基础上添加的资源管理样式 */
+
+/* 资源中心模态框 */
+.resource-upload-section {
+    margin-bottom: 2rem;
+}
+
+.upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius);
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+    background: var(--bg-secondary);
+}
+
+.upload-area:hover {
+    border-color: var(--primary-color);
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.upload-area.dragover {
+    border-color: var(--primary-color);
+    background: rgba(102, 126, 234, 0.1);
+    transform: scale(1.02);
+}
+
+.upload-area i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.upload-hint {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+/* 资源筛选 */
+.resource-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.resource-filters select {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--bg-color);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+/* 资源列表 */
+.resources-list {
+    display: grid;
+    gap: 1rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.resource-item {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: var(--transition);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.resource-item:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+}
+
+.resource-info {
+    flex: 1;
+}
+
+.resource-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.resource-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.resource-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.resource-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.resource-actions .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+/* 资源图标 */
+.resource-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.resource-icon.document {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.resource-icon.image {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.resource-icon.code {
+    background: #e8f5e8;
+    color: #388e3c;
+}
+
+.resource-icon.other {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+/* 资源链接区域 */
+.resource-links-section {
+    margin: 1rem 0;
+}
+
+.resource-links-section label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.resource-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.resource-link-input {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.resource-link-input .link-input {
+    flex: 2;
+}
+
+.resource-link-input .link-desc {
+    flex: 1;
+}
+
+.resource-link-input .btn {
+    padding: 0.5rem;
+    min-width: 40px;
+}
+
+/* 已添加的资源链接 */
+.added-resource-links {
+    margin-top: 1rem;
+}
+
+.added-link-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    margin-bottom: 0.5rem;
+}
+
+.added-link-info {
+    flex: 1;
+}
+
+.added-link-url {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.added-link-url:hover {
+    text-decoration: underline;
+}
+
+.added-link-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+/* 附件区域 */
+.post-attachments {
+    margin: 1rem 0;
+}
+
+.post-attachments label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.attachment-area {
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius);
+    padding: 1rem;
+    background: var(--bg-secondary);
+}
+
+.attachment-list {
+    margin-top: 1rem;
+}
+
+.attachment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    margin-bottom: 0.5rem;
+}
+
+.attachment-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.attachment-name {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.attachment-size {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.attachment-remove {
+    color: var(--danger-color);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.attachment-remove:hover {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+/* 话题中的资源展示 */
+.topic-resources {
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.topic-resources h4 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.resource-links-in-topic {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.resource-link-in-topic {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: var(--bg-color);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.resource-link-in-topic:hover {
+    background: white;
+    box-shadow: var(--shadow);
+}
+
+.resource-link-in-topic i {
+    color: var(--primary-color);
+}
+
+.topic-attachments {
+    margin-top: 1rem;
+}
+
+.attachment-in-topic {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text-primary);
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: var(--transition);
+}
+
+.attachment-in-topic:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* 文件上传进度 */
+.upload-progress {
+    margin-top: 1rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.progress-text {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* 实时更新指示器 */
+.update-indicator {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: var(--success-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    display: none;
+    animation: slideInRight 0.3s ease;
+    z-index: 1500;
+}
+
+.update-indicator.show {
+    display: block;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* 实时状态 */
+.realtime-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--success-color);
+    background: rgba(16, 185, 129, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--success-color);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .resource-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .resource-actions {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 1rem;
+    }
+    
+    .resource-link-input {
+        flex-direction: column;
+    }
+    
+    .resource-link-input .link-input,
+    .resource-link-input .link-desc {
+        width: 100%;
+    }
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源共享论坛系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">💬 资源共享论坛</div>
+            <div class="nav-menu">
+                <button id="resourcesBtn" class="btn btn-secondary">
+                    <i class="fas fa-folder-open"></i> 资源中心
+                </button>
+                <button id="loginBtn" class="btn btn-primary">登录/注册</button>
+                <div id="userInfo" class="user-info" style="display: none;">
+                    <span id="username"></span>
+                    <button id="logoutBtn" class="btn btn-secondary">退出</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="main-container">
+        <!-- 资源中心模态框 -->
+        <div id="resourcesModal" class="modal">
+            <div class="modal-content large">
+                <span class="close">&times;</span>
+                <h2><i class="fas fa-folder-open"></i> 共享资源中心</h2>
+                
+                <!-- 资源上传区域 -->
+                <div class="resource-upload-section">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>拖拽文件到此处或点击选择</p>
+                        <p class="upload-hint">支持文件类型：文档、图片、代码等，最大100KB</p>
+                        <input type="file" id="fileInput" accept="*/*" style="display: none;">
+                        <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                            选择文件
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 资源分类筛选 -->
+                <div class="resource-filters">
+                    <select id="resourceCategory">
+                        <option value="all">所有分类</option>
+                        <option value="document">文档资料</option>
+                        <option value="image">图片素材</option>
+                        <option value="code">代码文件</option>
+                        <option value="other">其他资源</option>
+                    </select>
+                    <select id="resourceSort">
+                        <option value="newest">最新上传</option>
+                        <option value="popular">最受欢迎</option>
+                        <option value="download">下载最多</option>
+                    </select>
+                </div>
+
+                <!-- 资源列表 -->
+                <div id="resourcesList" class="resources-list">
+                    <!-- 资源项目将通过JavaScript动态加载 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 发帖区域（增强版） -->
+        <section id="postSection" class="post-section" style="display: none;">
+            <div class="post-form">
+                <h3>发表新话题</h3>
+                <input type="text" id="postTitle" placeholder="请输入标题..." maxlength="100">
+                
+                <!-- 资源链接添加 -->
+                <div class="resource-links-section">
+                    <label>相关资源链接：</label>
+                    <div id="resourceLinks" class="resource-links">
+                        <div class="resource-link-input">
+                            <input type="url" placeholder="输入资源链接..." class="link-input">
+                            <input type="text" placeholder="链接描述..." class="link-desc">
+                            <button type="button" class="btn btn-secondary" onclick="forum.addResourceLink()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 文件上传 -->
+                <div class="post-attachments">
+                    <label>附件上传（可选）：</label>
+                    <div class="attachment-area">
+                        <input type="file" id="postAttachments" multiple accept="*/*" max-size="102400">
+                        <div class="attachment-list" id="attachmentList"></div>
+                    </div>
+                </div>
+
+                <textarea id="postContent" placeholder="请输入内容..." maxlength="2000"></textarea>
+                <div class="form-actions">
+                    <span class="char-count">
+                        <span id="contentCount">0</span>/2000
+                    </span>
+                    <button id="submitPost" class="btn btn-primary">发布话题</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 话题列表 -->
+        <section class="topics-section">
+            <div class="section-header">
+                <h2>最新话题</h2>
+                <div class="filter-options">
+                    <select id="sortSelect">
+                        <option value="newest">最新发布</option>
+                        <option value="hottest">最热讨论</option>
+                        <option value="mostLiked">最多点赞</option>
+                        <option value="withResources">含资源</option>
+                    </select>
+                </div>
+            </div>
+            <div id="topicsList" class="topics-list">
+                <!-- 话题列表将通过JavaScript动态加载 -->
+            </div>
+            <div id="loadingMore" class="loading-more" style="display: none;">
+                <i class="fas fa-spinner fa-spin"></i> 加载更多...
+            </div>
+        </section>
+    </main>
+
+    <!-- 登录/注册模态框 -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">登录</button>
+                <button class="auth-tab" data-tab="register">注册</button>
+            </div>
+            <div id="loginForm" class="auth-form">
+                <input type="text" id="loginUsername" placeholder="用户名" maxlength="20">
+                <input type="password" id="loginPassword" placeholder="密码" maxlength="20">
+                <button id="loginSubmit" class="btn btn-primary">登录</button>
+            </div>
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <input type="text" id="registerUsername" placeholder="用户名 (3-20位)" maxlength="20">
+                <input type="password" id="registerPassword" placeholder="密码 (6-20位)" maxlength="20">
+                <input type="password" id="registerConfirm" placeholder="确认密码" maxlength="20">
+                <button id="registerSubmit" class="btn btn-primary">注册</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 话题详情模态框 -->
+    <div id="topicModal" class="modal">
+        <div class="modal-content large">
+            <span class="close">&times;</span>
+            <div id="topicDetail" class="topic-detail">
+                <!-- 话题详情将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
